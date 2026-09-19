@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://drapeshoppe.co.in/sitemap.xml

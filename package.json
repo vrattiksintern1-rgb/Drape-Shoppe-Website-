@@ -1,0 +1,12 @@
+{
+  "name": "drape-shoppe-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Drape Shoppe static website — drapeshoppe.co.in",
+  "scripts": {
+    "dev": "serve . --listen 5173"
+  },
+  "devDependencies": {
+    "serve": "^14.2.6"
+  }
+}
