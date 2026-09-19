@@ -379,7 +379,9 @@
 
     if (!lightbox || !triggers.length) return;
 
-    var slides = triggers.map(function (btn) {
+    /* Each [data-gallery] list is its own sequence: prev/next never
+       jumps from one gallery into another. */
+    function toSlide(btn) {
       var img = btn.querySelector('img');
       var caption = btn.querySelector('.gallery-caption');
       return {
@@ -387,8 +389,9 @@
         alt: img ? img.getAttribute('alt') : '',
         caption: caption ? caption.textContent : ''
       };
-    });
+    }
 
+    var slides = [];
     var index = 0;
     var lastFocused = null;
 
@@ -399,10 +402,13 @@
       lbImg.src = slide.src;
       lbImg.alt = slide.alt;
       lbCaption.textContent = slide.caption;
+      lbCaption.hidden = !slide.caption;
     }
 
-    function open(i) {
+    function open(group, i) {
       lastFocused = doc.activeElement;
+      slides = group.slides;
+      lightbox.setAttribute('aria-label', group.label);
       show(i);
       lightbox.hidden = false;
       doc.body.classList.add('is-locked');
@@ -415,8 +421,15 @@
       if (lastFocused && lastFocused.focus) lastFocused.focus();
     }
 
-    triggers.forEach(function (btn, i) {
-      btn.addEventListener('click', function () { open(i); });
+    $$('[data-gallery]').forEach(function (list) {
+      var btns = $$('.gallery-btn', list);
+      var group = {
+        label: list.getAttribute('data-gallery') || 'Gallery',
+        slides: btns.map(toSlide)
+      };
+      btns.forEach(function (btn, i) {
+        btn.addEventListener('click', function () { open(group, i); });
+      });
     });
 
     btnClose.addEventListener('click', close);
@@ -512,6 +525,7 @@
     '.collection-grid > .tile',
     '.story-media',
     '.gallery',
+    '.closer-grid',
     '.custom-media',
     '.steps > .step', '.process-media',
     '.review-grid > .review-card',

@@ -255,7 +255,7 @@ button:focus:not(:focus-visible),
   z-index: 100;
   background: rgba(255, 255, 255, 0);
   box-shadow: 0 1px 0 rgba(0, 55, 117, 0), 0 6px 24px rgba(0, 55, 117, 0);
-  /* Every property that changes with .is-scrolled (bar, wash, logo swap,
+  /* Every property that changes with .is-scrolled (bar, wash,
      logo size, nav colour, burger colour) runs on the same 400ms curve,
      so the bar settles as one piece rather than in steps. */
   --header-fade: var(--dur-slow) var(--ease-out);
@@ -288,24 +288,19 @@ button:focus:not(:focus-visible),
   min-height: var(--header-h);
 }
 
-/* Both logo variants sit in the same grid cell and cross-fade. */
+/* One logo (navy Logo_03) at all times; it only shrinks once scrolled. */
 .brand {
-  display: grid;
+  display: flex;
   flex: 0 0 auto;
   padding-block: 8px;
   margin-right: 8px;
 }
 .brand-logo {
-  grid-area: 1 / 1;
   width: auto;
   height: 44px;
   object-fit: contain;
-  transition: opacity var(--header-fade), height var(--header-fade);
+  transition: height var(--header-fade);
 }
-.brand-logo--dark { opacity: 0; }
-.brand-logo--light { opacity: 1; }
-.site-header.is-scrolled .brand-logo--dark { opacity: 1; }
-.site-header.is-scrolled .brand-logo--light { opacity: 0; }
 
 .header-actions {
   display: flex;
@@ -684,6 +679,20 @@ button:focus:not(:focus-visible),
   font-weight: 500;
   color: var(--navy);
 }
+
+/* 10b. A CLOSER LOOK ====================================================== */
+
+/* Square grid: 2 columns on mobile, 3 on tablet, 4 on desktop. 12 photos
+   fill every width with no ragged last row. Photos live in
+   /assets/img/gallery-extra/ (800x800) and appear nowhere else on the page.
+   Buttons reuse .gallery-btn so hover, focus and the lightbox match the
+   showroom gallery above. */
+.closer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.closer-item .gallery-btn img { aspect-ratio: 1 / 1; }
 
 /* 11. CUSTOM FURNITURE ===================================================== */
 
@@ -1073,6 +1082,8 @@ button:focus:not(:focus-visible),
 
   .grid-closing { margin-top: 36px; }
 
+  .closer-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
   /* Gallery: 2-up grid from tablet */
   .gallery {
     grid-auto-flow: row;
@@ -1181,6 +1192,8 @@ button:focus:not(:focus-visible),
 
   /* 4 columns on desktop, per spec §5.3 */
   .collection-grid { grid-template-columns: repeat(4, 1fr); gap: 22px; }
+
+  .closer-grid { grid-template-columns: repeat(4, 1fr); gap: 22px; }
 
   /* Masonry on desktop, per spec §5.5 — all images stay 4:5 portrait */
   .gallery {
