@@ -503,12 +503,11 @@ button:focus:not(:focus-visible),
   transition: box-shadow var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
 }
 
-/* Hover: the card lifts, its photo eases in slightly, the icon ring warms.
+/* Hover: the card lifts and its photo eases in slightly.
    Keyboard focus gets the same lift. */
 @media (hover: hover) {
   .tile:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
   .tile:hover .tile-media img { transform: scale(1.04); }
-  .tile:hover .tile-icon { transform: scale(1.06); background: rgba(249, 209, 74, .14); }
 }
 .tile:focus-within { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
 
@@ -535,32 +534,6 @@ button:focus:not(:focus-visible),
   transition: transform var(--dur-slow) var(--ease-out);
 }
 .tile-media img.is-missing { visibility: hidden; }
-
-.tile-media--icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--cyan-soft);
-}
-.tile-icon {
-  display: grid;
-  place-items: center;
-  width: 76px;
-  height: 76px;
-  border: 2px solid var(--gold);
-  border-radius: 50%;
-  color: var(--navy);
-  transition: transform var(--dur) var(--ease-out), background-color var(--dur) ease;
-}
-.tile-icon svg {
-  width: 34px;
-  height: 34px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
 
 .tile-body { display: block; padding: 14px 14px 18px; }
 .tile-title {

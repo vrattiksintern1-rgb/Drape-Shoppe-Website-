@@ -17,9 +17,10 @@ graphic, no stock image, no broken-image icon.
 | `DRAPE_SHOPPE_Final_Logo_03.svg` | **in place** — vector, extracted from the PDF | navy wordmark, cyan D, gold swirl; transparent | Header (after scroll), 404 page |
 | `DRAPE_SHOPPE_Final_Logo_02.svg` | **in place** — vector, extracted from the PDF | white knockout + gold swirl; transparent | Header over the hero |
 | `DRAPE_SHOPPE_Final_Logo_01.svg` | **in place** — vector, extracted from the PDF | navy-lockup colours (white wordmark, cyan D, gold swirl); transparent, sits on the navy footer | Footer |
-| `favicon-32.png` | crop the "D" mark from `DRAPE_SHOPPE_Final_Logo.pdf` | 32×32 PNG | Browser tab |
-| `apple-touch-icon.png` | same "D" mark | 180×180 PNG | iOS home screen |
-| `icon-512.png` | same "D" mark | 512×512 PNG | Android / PWA |
+| `favicon.svg` | **in place** — "D" mark + swirl from Logo_03 vector, no wordmark | scalable SVG, transparent | Browser tab (modern browsers) |
+| `favicon-32.png` | **in place** — rendered from `favicon.svg` | 32×32 PNG, transparent | Browser tab (fallback) |
+| `apple-touch-icon.png` | **in place** — same "D" mark | 180×180 PNG, white background (iOS blacks out transparency) | iOS home screen |
+| `icon-512.png` | **in place** — same "D" mark, padded | 512×512 PNG, transparent | Android / PWA |
 | `og-image.jpg` | agency-built from the exterior shot + logo overlay | 1200×630 | Social share card |
 | `exterior.jpg` | `DSC09331` re-export | any, 1200px wide | JSON-LD `image` only (path comes from the spec's own schema block) |
 
@@ -52,11 +53,8 @@ spec's shortlist (§7.2).
 | `DSC09313.JPG` | Home Décor Accessories |
 
 Wallpapers, Wooden Flooring, Rugs & Wall Carpets and Towels & Bath Accessories
-have **no image slot** — they ship as text-only cards with a gold-bordered icon
-on `--cyan-soft`, per spec §7.4.2. When the shoot happens, replace each
-`<span class="tile-media tile-media--icon">…</span>` with the standard
-`<span class="tile-media"><img …></span>` block and drop the class
-`tile--noimage` from the `<li>`.
+have been **removed** from the Collections grid (no photography), which now shows
+these 8 tiles only.
 
 ### Gallery — 1200×1500, under 250 KB each
 
